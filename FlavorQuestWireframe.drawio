@@ -1,0 +1,52 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.8">
+  <diagram name="Page-1" id="Dp_Pl25eC_gt_08pmTp4">
+    <mxGraphModel dx="2074" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="760" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-3" value="&lt;h1&gt;&lt;b&gt;Flavor Quest&lt;/b&gt;&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="760" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-4" value="&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;Home&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Search Recipes&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;About Us" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="110" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-5" value="Image Placeholder" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="120" y="210" width="290" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-6" value="Login Box" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="490" y="230" width="250" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-7" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="590" width="760" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1150" width="760" height="540" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-9" value="&lt;h1&gt;&lt;b&gt;Flavor Quest&lt;/b&gt;&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1150" width="760" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-10" value="&lt;h1&gt;&lt;b&gt;Flavor Quest&lt;/b&gt;&lt;/h1&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="590" width="760" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-11" value="Home&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Search Recipes&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;About Us&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1220" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-12" value="Home&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 153);&quot;&gt;Search Recipes&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/span&gt;About Us" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="660" width="440" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-13" value="About Us&lt;div&gt;- Why we made this&lt;/div&gt;&lt;div&gt;- What&#39;s the goal&lt;/div&gt;&lt;div&gt;- Helping others find recipes&lt;/div&gt;&lt;div&gt;- Etc&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1280" width="720" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-14" value="Insert Ingredients&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="720" width="300" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="sXfFEh7QV0DsFBdSB_hk-15" value="Suggested Recipes" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="720" width="300" height="390" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
