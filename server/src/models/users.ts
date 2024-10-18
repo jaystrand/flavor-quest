@@ -24,7 +24,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
             user_id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
-                primaryKey: true,
+                primaryKey: true, // primary key
             },
             username: {
                 type: DataTypes.STRING,
