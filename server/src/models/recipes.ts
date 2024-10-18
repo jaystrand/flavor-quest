@@ -24,7 +24,7 @@ export class Recipe extends Model<RecipeAttributes,RecipeCreationAttributes> imp
     public readonly updatedAt!: Date;
 }
 
-export function RecipeFactoty(sequelize: Sequelize): typeof Recipe {
+export function RecipeFactory(sequelize: Sequelize): typeof Recipe {
 
     Recipe.init(
         {
