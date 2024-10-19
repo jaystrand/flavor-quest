@@ -17,7 +17,7 @@ export class Recipe extends Model<RecipeAttributes,RecipeCreationAttributes> imp
     public user_id!: number;
     public title!: string;
     public description!: string;
-    public image_url?: string | undefined;
+    public image_url?: string;// | undefined;
     public type!: string;
 
     public readonly createdAt!: Date;

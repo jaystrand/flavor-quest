@@ -26,7 +26,7 @@ const sequelize = process.env.DB_URL
 //Initializing models
 const User = UserFactory(sequelize);
 const Recipe = RecipeFactory(sequelize);
-const Ingredients = IngredientFactory(sequelize);
+const Ingredient = IngredientFactory(sequelize);
 const Favorites = FavoriteFactory(sequelize);
 const Comments = CommentFactory(sequelize);
 
@@ -52,7 +52,7 @@ Recipe.hasMany(Favorites,{foreignKey:'recipe_id'});
 Favorites.belongsTo(Recipe,{foreignKey:'recipe_id'});
 
 //Recipe and Ingredients
-Recipe.hasMany(Ingredients,{foreignKey:'recipe_id'});
-Ingredients.belongsTo(Recipe,{foreignKey:'recipe_id'});
+Recipe.hasMany(Ingredient,{foreignKey:'recipe_id'});
+Ingredient.belongsTo(Recipe,{foreignKey:'recipe_id'});
 
-export {sequelize,User,Recipe,Comments,Favorites,Ingredients}
+export {sequelize,User,Recipe,Comments,Favorites,Ingredient}
