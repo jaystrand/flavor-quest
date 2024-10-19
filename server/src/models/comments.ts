@@ -1,4 +1,4 @@
-import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+import { DataTypes,  Sequelize, Model, Optional } from 'sequelize';
 import { User } from './users.js';
 import { Recipe } from './recipes.js';
 
@@ -45,7 +45,7 @@ export function CommentFactory(sequelize: Sequelize): typeof Comment{
                 }
             },
             text:{
-                type: DataTypes.INTEGER,
+                type: DataTypes.TEXT, // changed - needs to update in original
                 allowNull: false,
             },
 

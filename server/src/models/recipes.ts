@@ -38,6 +38,7 @@ export function RecipeFactory(sequelize: Sequelize): typeof Recipe {
             allowNull: false,
             references: {
                 model: User, // this is the foriegn key -> User
+                key :'user_id'
             }
            },
            title: {
