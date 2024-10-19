@@ -1,5 +1,5 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
-import { User } from './users';
+import { User } from './users.js';
 
 interface RecipeAttributes{
     recipe_id: number;
