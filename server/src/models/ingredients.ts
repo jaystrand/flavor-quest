@@ -1,5 +1,5 @@
 import { DataTypes,  Sequelize, Model, Optional } from 'sequelize';
-import { Recipe } from './recipes';
+import { Recipe } from './recipes.js';
 
 interface IngredientAttributes{
     ingredients_id: number;

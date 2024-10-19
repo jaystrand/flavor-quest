@@ -1,6 +1,6 @@
 import { DataTypes,Sequelize,Model,Optional } from "sequelize";
-import { User } from "./users";
-import { Recipe } from "./recipes";
+import { User } from "./users.js";
+import { Recipe } from "./recipes.js";
 
 interface FavoriteAttributes{
     fav_id: number;
