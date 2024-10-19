@@ -5,13 +5,13 @@ import {seedComments} from './comments-seeds.js';
 import {seedFavorites} from './favorites-seeds.js';
 
 import sequelize  from '../config/connection.js'
-// sequelize.authenticate()
-//   .then(() => {
-//     console.log('Database connection established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   });
+sequelize.authenticate()
+  .then(() => {
+    console.log('Database connection established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 const seedAll = async (): Promise<void> => {
     try{
         await sequelize.sync({force: true});
