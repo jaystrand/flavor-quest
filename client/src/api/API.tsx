@@ -1,3 +1,4 @@
+import React { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const apiKey = 'e505245deca64cb38494658cc624bec5'
@@ -42,9 +43,27 @@ const fetchRecipes = async (ingredients: string) => {
 //   } catch (error) {    
 //     // log error to console
 //     console.error(error);
-
 //   }
 // };
 
-export { fetchRecipes };
-// export { fetchRecipeById };
+const imgAPIKey = 't7HfNWxFA-sV6n2WAAQFBEKzNHmNHg0oCCOVY-siuBw'
+
+const fetchImg = async () => {
+  try {
+    const response = await axios.get('https://api.unsplash.com/photos/random', {
+      params: {
+        query: 'food',
+      },
+      headers: {
+        Authorization: `Client-ID ${imgAPIKey}`,
+      },
+    });
+    // return image data
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null; // return null if error in handling
+  }
+};
+
+export { fetchRecipes , fetchImg };
