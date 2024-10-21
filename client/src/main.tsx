@@ -3,8 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 
 import App from './App.tsx';
-import Page1 from './pages/page1.tsx';
-import Page2 from './pages/page2.tsx';
+import Page1 from './pages/aboutus.tsx';
+import Page2 from './pages/homepage.tsx';
+import Page3 from './pages/search.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 
 const router = createBrowserRouter([
@@ -25,9 +26,14 @@ const router = createBrowserRouter([
         path: 'page2',
         element: <Page2 />,
       },
+      {
+        path: 'page3',
+        element: <Page3 />,
+      }
     ],
   },
 ]);
+
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
