@@ -1,38 +1,50 @@
-const fetchData = async (url: string, headers: Record<string, string> = {}) => {
+import axios from 'axios';
+
+const apiKey = 'e505245deca64cb38494658cc624bec5'
+
+const fetchRecipes = async (ingredients: string) => {
   try {
-    const response = await fetch(url, { headers });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error('Invalid API response, check the network tab');
-    }
-    return data;
-  } catch (err) {
-    console.error('An error occurred:', err);
-    return [];
+    // API request to fetch recipes by ingredients
+    const response = await axios.get(
+      'https://api.spoonacular.com/recipes/findByIngredients',
+      {
+        params: {
+          ingredients,
+          number: 25,
+          ignorePantry: true,
+          apiKey: apiKey,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    // log error to console
+    console.error(error);
   }
 };
 
-const searchUser = async (username: string, token: string) => {
-  if (!token) {
-    console.error('API token is missing');
-    return {};
-  }
 
-  try {
-    const response = await fetch(`https://api.example.com/users/${username}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error('Invalid API response, check the network tab');
-    }
-    return data;
-  } catch (err) {
-    console.error('An error occurred:', err);
-    return {};
-  }
-};
+// uncomment this function if we include a way to fetch recipe by ID
 
-export { fetchData, searchUser };
+// const fetchRecipeById = async (recipeId: string) => {
+//   try {
+//     // API request to fetch recipe by recipe ID
+//     const response = await axios.get(
+//       `https://api.spoonacular.com/recipes/${recipeId}/information`,
+//       {
+//         params: {
+//           includeNutrition: false,
+//           apiKey: apiKey,
+//         },
+//       }
+//     );
+//     return response.data;
+//   } catch (error) {    
+//     // log error to console
+//     console.error(error);
+
+//   }
+// };
+
+export { fetchRecipes };
+// export { fetchRecipeById };
