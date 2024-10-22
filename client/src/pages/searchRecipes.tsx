@@ -1,11 +1,27 @@
-import React, { useState } from "react";
 import { fetchRecipes, fetchRecipeById } from "../api/API";
+import React, {useEffect, useState } from 'react';
+
 
 const SearchRecipes: React.FC = () => {
   const [ingredients, setIngredients] = useState("");
   const [recipes, setRecipes] = useState<any[]>([]); // State to store recipes
   const [error, setError] = useState<string | null>(null);
   const [recipeId, setRecipeId] = useState<any[]>([]); // State to store recipe instructions by ID
+  const [user, setUser] = useState<{ username: string } | null>(null);
+
+  // Retrieve user information from local storage
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser)); // Only parse if the user is stored
+      } else {
+        console.error("User not found in localStorage");
+      }
+    } catch (error) {
+      console.error("Error parsing user data from localStorage:", error);
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIngredients(e.target.value); // Update the ingredients as user types
@@ -35,6 +51,7 @@ const SearchRecipes: React.FC = () => {
   return (
     <div className="search-recipes">
       <h1>Search Recipes by Ingredients</h1>
+      {user && <h2>Welcome, {user.username}!</h2>}  {/* Display the logged-in username */}
       <form onSubmit={handleSearch}>
         <input
           type="text"
