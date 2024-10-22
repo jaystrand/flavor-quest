@@ -90,9 +90,8 @@ const SearchRecipes: React.FC = () => {
                     </ul>
                     <p>Instructions:</p>
                     <ol>
-                      {recipeId.instructions.map(
-                        (instruction: string, index: number) => (
-                          <li key={index}>{instruction}</li>
+                      {recipeId.map((instructions: string) => (
+                          <li key={instructions}>{instructions}</li>
                         )
                       )}
                     </ol>
