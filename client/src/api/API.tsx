@@ -1,7 +1,12 @@
 // import React { useState, useEffect } from 'react';
 import axios from 'axios';
+import dotenv from 'dotenv';
+import process from 'process';
 
-const apiKey = 'e505245deca64cb38494658cc624bec5'
+dotenv.config();
+
+const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
+const imgAPIKey = process.env.REACT_APP_UNSPLASH_API_KEY;
 
 const fetchRecipes = async (ingredients: string) => {
   try {
@@ -51,7 +56,7 @@ const fetchRecipeById = async (recipeId: string) => {
   }
 };
 
-const imgAPIKey = 't7HfNWxFA-sV6n2WAAQFBEKzNHmNHg0oCCOVY-siuBw'
+imgAPIKey
 
 const fetchImg = async () => {
   try {
