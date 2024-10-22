@@ -1,19 +1,17 @@
 import { Outlet } from 'react-router-dom';
-
-const App = () => {
+import Navbar from './components/Nav';    
+// import RandomFoodImage from './components/RandomFoodImage'; 
+function App() {
   return (
-    <div>
-      <div id="top-bar">
-        <h1>Placeholder Title</h1>
-        <nav>
-          <a href="/">Home</a>
-          <a href="/page1">Page 1</a>
-          <a href="/page2">Page 2</a>
-        </nav>
-      </div>
-      <Outlet />
+    <div className="container">
+      <Navbar />  {/* Display the Navbar */}
+      <main>
+      {/* <h1> Food Image from the second API  </h1>
+      <RandomFoodImage />  */}
+        <Outlet /> 
+      </main>
     </div>
   );
-};
+}
 
 export default App;

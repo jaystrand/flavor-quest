@@ -14,4 +14,6 @@ router.use('/auth',authRoutes)
 //todo add authentication-middleware
 router.use('/api',apiRoutes)//authenticateToken,apiRoutes)
 
+//you can add third part api routes here with '/api/external' or so 
+
 export default router;
