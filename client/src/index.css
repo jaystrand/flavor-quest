@@ -6,7 +6,7 @@
   --primary-color: #1c1c1c; /* Panthera Metal */
   --primary-hover-color: #2a2a2a; /* Slightly lighter shade */
   --background-color: #f5f5f5; /* Light background color */
-  --red-accent: #ff4c4c; /* Dark text color */
+  --purple-accent: #9b449b; /* Purple accent color */
   --nav-background-color: #ffffff; /* White background for nav */
   --nav-border-color: #e0e0e0; /* Light border color for nav */
   --font-family: 'Inter Tight', system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -46,7 +46,7 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-  color: var(--red-accent); /* Change font color to red */
+  color: var(--purple-accent);
 }
 
 #top-bar {
@@ -55,15 +55,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
 }
+
 
 h1 {
   font-size: 2.5em;
   line-height: 1.1;
   font-weight: var(--font-weight-bold);
   margin: 0;
-  color: var(--red-accent); /* Change font color to red */
+  color: var(--purple-accent); 
 }
 
 button {
@@ -128,19 +128,25 @@ nav {
 
 nav a {
   font-weight: var(--font-weight-medium);
-  color: var(--red-accent); /* Change font color to red */
+  color: var(--purple-accent);
   text-decoration: none;
   margin: 0 15px;
   transition: color var(--transition-duration), box-shadow var(--transition-duration);
   background-color: var(--primary-color); /* Lighter grey background */
-  border: 1px solid var(--red-accent); /* Red outline */
+  border: 1px solid var(--purple-accent);
   padding: 5px 10px;
   border-radius: 5px;
 }
 
+li {
+  display: inline;
+}
+nav ul {
+  display: inline
+}
 nav a:hover {
-  color: var(--red-accent); /* Ensure font color remains red on hover */
-  box-shadow: 0 0 10px var(--red-accent); /* Red glow on hover */
+  color: var(--purple-accent);
+  box-shadow: 0 0 10px var(--purple-accent);
   background-color: var(--primary-hover-color);
 }
 .nav-item {
@@ -153,6 +159,18 @@ nav a:hover {
   text-decoration: none;
 }
 
+.search-recipes-page {
+  background-color: var(--primary-color); /* Use primary color for background */
+  color: var(--purple-accent); /* Change font color to purple */
+}
+
+.search-recipes-page a {
+  color: var(--primary-color);
+}
+
+.search-recipes-page a:hover {
+  color: var(--primary-hover-color);
+}
 .active {
   font-weight: 700;
 }
@@ -160,4 +178,13 @@ nav a:hover {
 .table {
   width: 80vw;
   table-layout: fixed;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page, .search-recipes-page, .about-us-page {
+  flex: 1; /* Allow the pages to grow and shrink equally */
+  margin: 10px; /* Add some margin around each page */
 }

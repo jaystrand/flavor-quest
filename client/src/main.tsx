@@ -8,7 +8,7 @@ import Register from './pages/Registration';
 import Profile from './pages/Profile';
 import AboutUs from './pages/aboutus';
 import ProtectedRoute from './components/ProtedtedRoute'; 
-import './styles/style.css'
+import './index.css';
 // Find the root element for rendering
 const rootElement = document.getElementById('root');
 
