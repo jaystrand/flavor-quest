@@ -1,3 +1,4 @@
+
 import express from 'express';
 import { registerUser, loginUser } from '../controllers/user-controller.js';  // Import the controller functions
 
