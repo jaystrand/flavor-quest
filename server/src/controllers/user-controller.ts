@@ -152,8 +152,13 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
 // Get logged-in user's profile based on JWT token - added on Tuesday
 export const getProfile = async (req: Request, res: Response): Promise<Response> => {
   try {
-   
-    const userId = req.user?.user_id;  // Extract user ID from the JWT token
+    const userId = req.user?.user_id;  // Extract user ID from JWT
+
+    // Check if the userId is properly extracted from the JWT
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID not found in token' });
+    }
+
     const user = await User.findByPk(userId, { attributes: ['username', 'email'] });
 
     if (!user) {

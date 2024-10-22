@@ -1,7 +1,6 @@
-import React, {useEffect, useState } from 'react';
-import { fetchRecipes } from '../api/API';
-import React, { useState } from "react";
 import { fetchRecipes, fetchRecipeById } from "../api/API";
+import React, {useEffect, useState } from 'react';
+
 
 const SearchRecipes: React.FC = () => {
   const [ingredients, setIngredients] = useState("");
@@ -101,15 +100,6 @@ const SearchRecipes: React.FC = () => {
                 )
               )
             )}
-            {recipes.map((recipe) => (
-              <li key={recipe.id}>
-                <img src={recipe.image} alt={recipe.title} />
-                <h2>{recipe.title}</h2>
-                <p>Used Ingredients: {recipe.usedIngredientCount}</p>
-                <p>Description : {recipe.description}</p>
-                {/* <p>Missing Ingredients: {recipe.missedIngredientCount}</p> */}
-              </li>
-            ))}
           </ul>
         ) : (
           <p>No recipes found.</p>
