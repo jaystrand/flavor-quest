@@ -2,7 +2,7 @@ import {fetchImg} from '../api/API';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from '../components/Login';
-import './homepage.css';
+// import './homepage.css';
 const homepage = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const navigate = useNavigate(); //  hook to navigate b/w pages
