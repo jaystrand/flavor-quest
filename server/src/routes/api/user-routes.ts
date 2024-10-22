@@ -4,7 +4,8 @@ import {
     getAllUsers,
     getUserById,
     registerUser,
-    updateUser
+    updateUser,
+    getProfile
     //,deleteUser - may do it later
 } from '../../controllers/user-controller.js'
 
@@ -21,6 +22,9 @@ userRouter.post('/',registerUser);
 
 //Route to update a user by id
 userRouter.put('/:user_id',updateUser);
+
+// Route for getting the user's profile (requires authentication - but will add later)
+userRouter.get('/profile', getProfile);
 
 //Route to delete a user by id - may be considered later
 //userRouter.delete('/:user_id', deleteUser);
