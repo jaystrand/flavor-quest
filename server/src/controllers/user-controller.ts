@@ -100,6 +100,10 @@ export const loginUser = async (req: Request, res: Response): Promise<Response> 
     return res.json({
       message: 'Login successful',
       token,  // Send the token back to the client
+      user: {
+        username: user.username,  // Include username in response
+        email: user.email,  // Include email if needed
+      },
     });
   } catch (error: any) {
     return res.status(500).json({ message: error.message });

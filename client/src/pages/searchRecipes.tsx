@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { fetchRecipes } from '../api/API';
 
 const SearchRecipes: React.FC = () => {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState<any[]>([]); // State to store recipes
   const [error, setError] = useState<string | null>(null);
+  const [user, setUser] = useState<{ username: string } | null>(null);
+
+  // Retrieve user information from local storage
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser)); // Only parse if the user is stored
+      } else {
+        console.error("User not found in localStorage");
+      }
+    } catch (error) {
+      console.error("Error parsing user data from localStorage:", error);
+    }
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIngredients(e.target.value); // Update the ingredients as user types
@@ -25,6 +40,7 @@ const SearchRecipes: React.FC = () => {
   return (
     <div className="search-recipes">
       <h1>Search Recipes by Ingredients</h1>
+      {user && <h2>Welcome, {user.username}!</h2>}  {/* Display the logged-in username */}
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -45,7 +61,7 @@ const SearchRecipes: React.FC = () => {
                 <img src={recipe.image} alt={recipe.title} />
                 <h2>{recipe.title}</h2>
                 <p>Used Ingredients: {recipe.usedIngredientCount}</p>
-                <p>Description : {recipe.Description}</p>
+                <p>Description : {recipe.description}</p>
                 {/* <p>Missing Ingredients: {recipe.missedIngredientCount}</p> */}
               </li>
             ))}
