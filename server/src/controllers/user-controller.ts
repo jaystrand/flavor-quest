@@ -95,12 +95,13 @@ export const loginUser = async (req: Request, res: Response): Promise<Response> 
     }
 
     // Generate a JWT
-    const token = jwt.sign({ id: user.user_id }, JWT_SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.user_id , username: user.username}, JWT_SECRET_KEY, { expiresIn: '1h' });
 
     return res.json({
       message: 'Login successful',
       token,  // Send the token back to the client
       user: {
+        user_id:user.user_id,
         username: user.username,  // Include username in response
         email: user.email,  // Include email if needed
       },
@@ -147,6 +148,23 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
     }
   };
 
+
+// Get logged-in user's profile based on JWT token - added on Tuesday
+export const getProfile = async (req: Request, res: Response): Promise<Response> => {
+  try {
+   
+    const userId = req.user?.user_id;  // Extract user ID from the JWT token
+    const user = await User.findByPk(userId, { attributes: ['username', 'email'] });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    return res.json(user);  // Return user details
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
 
 
 
