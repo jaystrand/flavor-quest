@@ -12,11 +12,14 @@ const fetchRecipes = async (ingredients: string) => {
         params: {
           ingredients,
           number: 25,
+          instructionsRequired: true,
           ignorePantry: true,
           apiKey: apiKey,
         },
       }
     );
+    // return recipe data
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     // log error to console
@@ -27,24 +30,26 @@ const fetchRecipes = async (ingredients: string) => {
 
 // uncomment this function if we include a way to fetch recipe by ID
 
-// const fetchRecipeById = async (recipeId: string) => {
-//   try {
-//     // API request to fetch recipe by recipe ID
-//     const response = await axios.get(
-//       `https://api.spoonacular.com/recipes/${recipeId}/information`,
-//       {
-//         params: {
-//           includeNutrition: false,
-//           apiKey: apiKey,
-//         },
-//       }
-//     );
-//     return response.data;
-//   } catch (error) {    
-//     // log error to console
-//     console.error(error);
-//   }
-// };
+const fetchRecipeById = async (recipeId: string) => {
+  try {
+    // API request to fetch recipe by recipe ID
+    const response = await axios.get(
+      `https://api.spoonacular.com/recipes/${recipeId}/information`,
+      {
+        params: {
+          includeNutrition: false,
+          apiKey: apiKey,
+        },
+      }
+    );
+    // return recipe data
+    // console.log(response.data);
+    return response.data;
+  } catch (error) {    
+    // log error to console
+    console.error(error);
+  }
+};
 
 const imgAPIKey = 't7HfNWxFA-sV6n2WAAQFBEKzNHmNHg0oCCOVY-siuBw'
 
@@ -59,6 +64,7 @@ const fetchImg = async () => {
       },
     });
     // return image data
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -66,4 +72,4 @@ const fetchImg = async () => {
   }
 };
 
-export { fetchRecipes , fetchImg };
+export { fetchRecipes , fetchRecipeById , fetchImg };

@@ -1,24 +1,34 @@
-import React, { useState } from 'react';
-import { fetchRecipes } from '../api/API';
+import React, { useState } from "react";
+import { fetchRecipes, fetchRecipeById } from "../api/API";
 
 const SearchRecipes: React.FC = () => {
-  const [ingredients, setIngredients] = useState('');
+  const [ingredients, setIngredients] = useState("");
   const [recipes, setRecipes] = useState<any[]>([]); // State to store recipes
   const [error, setError] = useState<string | null>(null);
+  const [recipeId, setRecipeId] = useState<any[]>([]); // State to store recipe instructions by ID
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIngredients(e.target.value); // Update the ingredients as user types
   };
 
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent default form submission lets see if this is needed 
+    e.preventDefault(); // Prevent default form submission lets see if this is needed
     setError(null); // Clear previous errors
 
     try {
-      const recipeResults = await fetchRecipes(ingredients); // Calling the fetchRecipes function 
+      const recipeResults = await fetchRecipes(ingredients); // Calling the fetchRecipes function
       setRecipes(recipeResults); // Setting the fetched recipes in state
+
+      if (recipeResults.length > 0) {
+        recipeResults.forEach(async (recipe: { id: string }) => {
+          const recipeById = await fetchRecipeById(recipe.id); // Fetching each recipe by ID
+          setRecipeId(recipeById); // Setting the fetched recipe by ID in state
+        });
+      } else {
+        setError("No recipes found.");
+      }
     } catch (err) {
-      setError('Failed to fetch recipes. Please try again.');
+      setError("Failed to fetch recipes. Please try again.");
     }
   };
 
@@ -40,15 +50,39 @@ const SearchRecipes: React.FC = () => {
       <div className="recipe-results">
         {recipes.length > 0 ? (
           <ul>
-            {recipes.map((recipe) => (
-              <li key={recipe.id}>
-                <img src={recipe.image} alt={recipe.title} />
-                <h2>{recipe.title}</h2>
-                <p>Used Ingredients: {recipe.usedIngredientCount}</p>
-                <p>Description : {recipe.Description}</p>
-                {/* <p>Missing Ingredients: {recipe.missedIngredientCount}</p> */}
-              </li>
-            ))}
+            {recipes.map(
+              (recipe) => (
+                console.log(recipe),
+                (
+                  <li key={recipe.id}>
+                    <img src={recipe.image} alt={recipe.title} />
+                    <h2>{recipe.title}</h2>
+                    <p>Used Ingredients: {recipe.usedIngredientCount}</p>
+                    <p>Missing Ingredients: </p>
+                    <ul>
+                      {recipe.missedIngredients.map(
+                        (missedIngredient: {
+                          extendedName: string;
+                          name: string;
+                        }) => (
+                          <li key={missedIngredient.extendedName}>
+                            {missedIngredient.name}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                    <p>Instructions:</p>
+                    <ol>
+                      {recipeId.instructions.map(
+                        (instruction: string, index: number) => (
+                          <li key={index}>{instruction}</li>
+                        )
+                      )}
+                    </ol>
+                  </li>
+                )
+              )
+            )}
           </ul>
         ) : (
           <p>No recipes found.</p>
