@@ -1,7 +1,7 @@
 /* AboutUs.css */
 
 .page-background {
-    background-image: url('https://img.freepik.com/premium-photo/background-cooking-black-wooden-background-top-view-free-space-your-text_187166-5650.jpg');
+    background-image: url('https://img.freepik.com/premium-photo/mix-vegetables-food-isolated-grey-background_429553-176.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,7 +22,7 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    color: white
+    color: black
   }
   
   .header-section {
@@ -38,12 +38,18 @@
   
   .subtitle {
     font-size: 1.125rem;
-    color: white; /* gray-600 */
+    color: black; /* gray-600 */
   }
-  
-  .mission-text,
+
+ 
+  .mission-text {
+  color: black; /* gray-700 */
+  line-height: 1.625;
+  position: relative;
+  top: -5px
+}
   .journey-text {
-    color: white; /* gray-700 */
+    color: black; /* gray-700 */
     line-height: 1.625;
   }
   
