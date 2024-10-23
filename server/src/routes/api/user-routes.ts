@@ -1,5 +1,5 @@
 import express from 'express';
-
+import { authenticateToken } from '../../middleware/auth.js';
 import {
     getAllUsers,
     getUserById,
@@ -10,6 +10,9 @@ import {
 } from '../../controllers/user-controller.js'
 
 const userRouter = express.Router(); // the router instance
+
+// Route to getproifle
+userRouter.get('/profile',authenticateToken,getProfile)
 
 // Route to all users
 userRouter.get('/',getAllUsers);

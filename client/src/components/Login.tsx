@@ -22,12 +22,16 @@ const Login = () => {
       if (token) {
       localStorage.setItem('token', token); // token stored
 
+      console.log("Token received:", token);
+
        // Store user information if returned by backend (optional)
        const user = response.data.user;
        localStorage.setItem('user', JSON.stringify(user)); // store user info
-
-      // Redirect to search page after login
-      navigate('/search-recipes');// navigate to search recipes 
+       console.log("@LOGIN --> user from backend",user)
+       alert('Login successful!');
+       setError(""); // Clear any previous errors
+      // Redirect to profile page after login
+      navigate('/profile');
     } else {
       setError('Login failed. Please try again.');
     }

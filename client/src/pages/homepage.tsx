@@ -21,12 +21,13 @@ const homepage = () => {
   return (
     <div>
      <button onClick={handleRegister}>Register</button> {/* Add Register Button */}
-      <div className="homepage-container"></div>
-      <div className="image-container">
+     
+      <h1>Welcome to Flavor Quest</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         {/* Image */}
         <div>
           {imageUrl ? (
-            <img src={imageUrl} alt="Random food from Unsplash" className="food-image" />
+            <img src={imageUrl} alt="Random food from Unsplash" style={{ maxWidth: '400px', height: 'auto' }} />
           ) : (
             <p>Loading image...</p>
           )}

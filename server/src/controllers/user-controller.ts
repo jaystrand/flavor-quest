@@ -2,6 +2,7 @@ import {Request, Response } from 'express';
 import {User} from '../models/users.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { Comments, Favorites, Recipe } from '../models/index.js';
 
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'anything'
 //Get all users
@@ -79,6 +80,7 @@ export const registerUser = async (req: Request, res: Response): Promise<Respons
 
   // Login User
 export const loginUser = async (req: Request, res: Response): Promise<Response> => {
+  console.log('Request body:', req.body);  //  log the request body
   const { email, password } = req.body;
 
   try {
@@ -95,7 +97,7 @@ export const loginUser = async (req: Request, res: Response): Promise<Response> 
     }
 
     // Generate a JWT
-    const token = jwt.sign({ id: user.user_id , username: user.username}, JWT_SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ user_id: user.user_id , username: user.username}, JWT_SECRET_KEY, { expiresIn: '1h' });
 
     return res.json({
       message: 'Login successful',
@@ -152,19 +154,26 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
 // Get logged-in user's profile based on JWT token - added on Tuesday
 export const getProfile = async (req: Request, res: Response): Promise<Response> => {
   try {
+    console.log('Decoded User from JWT in getProfle - user-controller:', req.user); 
     const userId = req.user?.user_id;  // Extract user ID from JWT
-
+    console.log('Decoded UserID from JWT in getProfle - user-controller:', userId); 
     // Check if the userId is properly extracted from the JWT
     if (!userId) {
       return res.status(400).json({ message: 'User ID not found in token' });
     }
 
-    const user = await User.findByPk(userId, { attributes: ['username', 'email'] });
+    const user = await User.findByPk(userId, {
+       attributes: ['user_id','username', 'email'],
+       include: [
+        { model: Favorites, include: [Recipe] },// Include favorite recipes
+        { model: Comments, include: [Recipe] }, // Included connemts recipes
+      ]
+      });
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
-
+    console.log("GETPROFILE-->",user)
     return res.json(user);  // Return user details
   } catch (error) {
     return res.status(500).json({ message: 'Internal Server Error' });
