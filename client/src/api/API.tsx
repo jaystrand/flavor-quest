@@ -1,11 +1,14 @@
-// import React { useState, useEffect } from 'react';
 import axios from 'axios';
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
-dotenv.config();
+// dotenv.config();
 
-const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
-const imgAPIKey = process.env.REACT_APP_UNSPLASH_API_KEY;
+// const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
+// const imgApiKey = process.env.REACT_APP_UNSPLASH_API_KEY;
+
+const apiKey = 'e505245deca64cb38494658cc624bec5';
+const imgApiKey = 't7HfNWxFA-sV6n2WAAQFBEKzNHmNHg0oCCOVY-siuBw';
+
 
 const fetchRecipes = async (ingredients: string) => {
   try {
@@ -55,16 +58,14 @@ const fetchRecipeById = async (recipeId: string) => {
   }
 };
 
-imgAPIKey
-
 const fetchImg = async () => {
   try {
     const response = await axios.get('https://api.unsplash.com/photos/random', {
       params: {
-        query: 'food',
+        query: 'food'
       },
       headers: {
-        Authorization: `Client-ID ${imgAPIKey}`,
+        Authorization: `Client-ID ${imgApiKey}`,
       },
     });
     // return image data

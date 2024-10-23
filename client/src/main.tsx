@@ -5,6 +5,7 @@ import App from './App';
 import Home from './pages/homepage';
 import SearchRecipes from './pages/searchRecipes';
 import Register from './pages/Registration';
+<Route path="/search-recipes" element={<SearchRecipes />} />
 import Profile from './pages/Profile';
 import AboutUs from './pages/aboutus';
 import ProtectedRoute from './components/ProtedtedRoute'; 
