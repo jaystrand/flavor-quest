@@ -40,7 +40,7 @@ export const createRecipe = async (req: Request, res: Response): Promise<Respons
         image_url,
         type,
       });
-            // Add ingredients to the recipe and store them in an array to return
+  // Add ingredients to the recipe and store them in an array to return
     const createdIngredients = [];
     // Add ingredients to the recipe
   if (ingredients && ingredients.length > 0) {
