@@ -20,12 +20,13 @@ export const getCommentsForRecipe = async (req: Request, res: Response): Promise
 
 // Add a new comment to a recipe
 export const addCommentToRecipe = async (req: Request, res: Response): Promise<Response> => {
-  const { recipe_id, user_id, text } = req.body;
+  const recipeID = parseInt(req.params.recipe_id,10);
+  const  {user_id, text } = req.body;
 
   try {
     // Save the new comment
     const newComment = await Comment.create({
-      recipe_id,
+      recipe_id:recipeID,
       user_id,
       text,
     });

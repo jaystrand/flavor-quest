@@ -28,8 +28,9 @@ const Login = () => {
        const user = response.data.user;
        localStorage.setItem('user', JSON.stringify(user)); // store user info
        console.log("@LOGIN --> user from backend",user)
+       setError(''); // Clear any previous errors
        alert('Login successful!');
-       setError(""); // Clear any previous errors
+      //  setError(''); // Clear any previous errors
       // Redirect to profile page after login
       navigate('/profile');
     } else {
@@ -49,7 +50,7 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <div>
-          <label htmlFor="email">Email-ID:</label>
+          <label htmlFor="email">Email-ID :</label>
           <input
             type="text"
             id="email"
