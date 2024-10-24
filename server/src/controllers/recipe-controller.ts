@@ -1,6 +1,6 @@
 import {Request, Response } from 'express';
 import {Recipe} from '../models/recipes.js';
-
+import { Ingredient } from '../models/index.js';
 
 // Get all recipes
 export const getAllRecipes = async (_req: Request, res: Response): Promise<Response> => {
@@ -31,7 +31,7 @@ export const getRecipeById = async (req: Request, res: Response): Promise<Respon
 
   // Create a new recipe
 export const createRecipe = async (req: Request, res: Response): Promise<Response> => {
-    const { user_id, title, description, image_url, type } = req.body;
+    const { user_id, title, description, image_url, type, ingredients} = req.body;
     try {
       const newRecipe = await Recipe.create({
         user_id,
@@ -40,6 +40,20 @@ export const createRecipe = async (req: Request, res: Response): Promise<Respons
         image_url,
         type,
       });
+            // Add ingredients to the recipe and store them in an array to return
+    const createdIngredients = [];
+    // Add ingredients to the recipe
+  if (ingredients && ingredients.length > 0) {
+    for (const ingredient of ingredients) {
+      const newIngredient = await Ingredient.create({
+        recipe_id: newRecipe.recipe_id, // Link the ingredient to the recipe
+        name: ingredient.name,
+        quality: ingredient.quality,
+        unit: ingredient.unit,
+      });
+      createdIngredients.push(newIngredient); // Store created ingredient
+    }
+  }
       return res.status(201).json({
         message: 'Recipe created successfully',
         recipe: newRecipe,
