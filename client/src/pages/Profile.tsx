@@ -41,8 +41,8 @@ const Profile = () => {
             headers: { Authorization: `Bearer ${token}` },
           });
           console.log('Profile data:', response.data); 
-          console.log('Full user object:', user);
           setUser(response.data);
+          console.log('Full user object:', user);
         } catch (error) {
           console.error("Error fetching profile:", error);
         }
