@@ -29,6 +29,28 @@ export const getRecipeById = async (req: Request, res: Response): Promise<Respon
     }
   };
 
+  //getREcipesby userid
+  export const getRecipesByUserId = async (req : Request, res:Response) => {
+    const { user_id } = req.params; // Extract user_id from route parameter
+  
+    try {
+      // Find all recipes by the specific user
+      const recipes = await Recipe.findAll({
+        where: { user_id },
+      });
+  
+      // Check if any recipes were found
+      if (recipes.length > 0) {
+        res.status(200).json(recipes);
+      } else {
+        res.status(404).json({ message: 'No recipes found for this user' });
+      }
+    } catch (error) {
+      console.error("Error fetching user's recipes:", error);
+      res.status(500).json({ message: 'Error fetching recipes', error });
+    }
+  };
+
   // Create a new recipe
 export const createRecipe = async (req: Request, res: Response): Promise<Response> => {
     const { user_id, title, description, image_url, type, ingredients} = req.body;

@@ -14,7 +14,11 @@ interface Comment {
     title: string;
   };
 }
-
+//new addition for view recipe
+interface Recipe {
+  title: string;
+  description: string;
+}
 
 const Profile = () => {
   // const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -28,7 +32,11 @@ const [type,setType] = useState('');
 const [imageUrl, setImageUrl] = useState(''); // Optional image_url field
 const [successMessage, setSuccessMessage] = useState('');
 const [showMessage, setShowMessage] = useState(false);
-  const navigate = useNavigate();
+
+const [recipes, setRecipes] = useState<Recipe[]>([]); //-> newly added
+const [showRecipes, setShowRecipes] = useState(false); // State to control recipe display
+
+const navigate = useNavigate();
   // Fetch user profile on component mount
   useEffect(() => {
     const fetchProfile = async () => {
@@ -113,6 +121,36 @@ const [showMessage, setShowMessage] = useState(false);
  // Toggle recipe form visibility
   const handleCreateRecipe = () => {
     setShowRecipeForm(!showRecipeForm);
+  };
+
+   // Function to fetch recipes created by the user
+   const fetchUserRecipes = async () => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/');
+      return;
+    }
+    const useID = localStorage.getItem('userId')
+    try {
+      const response = await axios.get(`http://localhost:3001/api/recipes/user/${useID}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.data) {
+        setRecipes(response.data); // Set the recipes data
+        setShowRecipes(true); // Show the recipes when data is fetched
+      }
+    } catch (error) {
+      console.error("Error fetching user recipes:", error);
+    }
+  };
+
+  // Toggle recipes display
+  const handleViewRecipes = () => {
+    if (!showRecipes) {
+      fetchUserRecipes();
+    } else {
+      setShowRecipes(false);
+    }
   };
 
   const handleLogout = () => {
@@ -237,6 +275,28 @@ const [showMessage, setShowMessage] = useState(false);
             </div>
           )}
           <button onClick={handleLogout}>Logout</button>
+            {/* newly added to view recipes */}
+            <button onClick={handleViewRecipes}> 
+              {showRecipes ? 'Hide Recipes' : 'View Recipes'}
+            </button>
+            {showRecipes && (
+        <div style={{ width: '30%', marginLeft: '20px' }}>
+          <h2>My Recipes</h2>
+          <ul>
+            {recipes.length > 0 ? (
+              recipes.map((recipe, index) => (
+                <li key={index}>
+                  <h3>{recipe.title}</h3>
+                  <p>{recipe.description}</p>
+                </li>
+              ))
+            ) : (
+              <p>No recipes found.</p>
+            )}
+          </ul>
+        </div>
+      )}
+
         </div>
       ) : (
         <p>Loading profile...</p>
