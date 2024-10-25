@@ -2,10 +2,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-interface UserProfile {
-  username: string;
-  email: string;
-}
 interface Favorite {
   recipe: {
     title: string;
@@ -23,7 +19,15 @@ interface Comment {
 const Profile = () => {
   // const [profile, setProfile] = useState<UserProfile | null>(null);
   const [user, setUser] = useState<{ username: string, email: string, favorites: Favorite[], comments: Comment[] } | null>(null);
-
+ // States for recipe creation form
+ const [showRecipeForm, setShowRecipeForm] = useState(false);
+ const [title, setTitle] = useState('');
+ const [description, setDescription] = useState('');
+ const [ingredients, setIngredients] = useState([{ name: '', quality: '' }]);  // For multiple ingredients
+const [type,setType] = useState('');
+const [imageUrl, setImageUrl] = useState(''); // Optional image_url field
+const [successMessage, setSuccessMessage] = useState('');
+const [showMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
   // Fetch user profile on component mount
   useEffect(() => {
@@ -40,9 +44,16 @@ const Profile = () => {
           const response = await axios.get('http://localhost:3001/api/users/profile', {
             headers: { Authorization: `Bearer ${token}` },
           });
-          console.log('Profile data:', response.data); 
-          setUser(response.data);
-          console.log('Full user object:', user);
+          if (response.data) {
+            setUser(response.data);
+            console.log('user info:', response.data);
+            console.log('Favorites:', response.data.Favorites);
+            console.log('Comments:', response.data.Comments);
+          }
+    
+          // console.log('Profile data:', response.data); 
+          // setUser(response.data);
+          // console.log('Full user object:', user);
         } catch (error) {
           console.error("Error fetching profile:", error);
         }
@@ -51,6 +62,58 @@ const Profile = () => {
 
     fetchProfile();
   }, [navigate]);
+
+   // Handle form input for ingredients (multiple)
+   const handleIngredientChange = (index: number, field: string, value: string) => {
+    const updatedIngredients = [...ingredients];
+    updatedIngredients[index][field as keyof typeof ingredients[0]] = value;
+    setIngredients(updatedIngredients);
+  };
+    // Handle recipe creation form submission
+    const handleSubmitRecipe = async (e: React.FormEvent) => {
+      e.preventDefault();
+  
+      const token = localStorage.getItem('token'); // Ensure user is logged in
+      if (!token) {
+        navigate('/');  // Redirect to login if not authenticated
+        return;
+      }
+     const useID = localStorage.getItem('userId')
+     console.log("UserId in profile",useID)
+      try {
+        const response = await axios.post('http://localhost:3001/api/recipes', {
+          title,
+          description,
+          image_url: imageUrl, // Include optional image URL
+          type,
+          ingredients,
+          user_id: useID//user?.user_id
+        }, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+  
+        console.log("Recipe created:", response.data);
+        setSuccessMessage('Recipe submitted successfully!')
+        setShowMessage(true);
+        setTimeout(() => {
+          setShowMessage(false);
+      }, 3000); // Hides message after 3 seconds
+        // Reset form after submission
+        setTitle('');
+        setDescription('');
+        setIngredients([{ name: '', quality: '' }]);
+        setImageUrl(''); // Clear image URL
+        setType('')
+        setShowRecipeForm(false);  // Hide the form after submission
+      } catch (error) {
+        console.error("Error creating recipe:", error);
+      }
+    };
+
+ // Toggle recipe form visibility
+  const handleCreateRecipe = () => {
+    setShowRecipeForm(!showRecipeForm);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -95,6 +158,84 @@ const Profile = () => {
             )}
           </ul>
 
+              {/* Button to show/hide recipe creation form */}
+          <button onClick={handleCreateRecipe}>
+            {showRecipeForm ? 'Cancel' : 'Create Recipe'}
+          </button>
+
+          {/* Recipe creation form */}
+          {showRecipeForm && (
+            <div>
+              <h2>Create a New Recipe</h2>
+              {showMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+              <form onSubmit={handleSubmitRecipe}>
+                <div>
+                  <label htmlFor="title">Title:</label>
+                  <input
+                    type="text"
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="description">Description:</label>
+                  <textarea
+                    id="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="image_url">Image URL:</label>
+                  <input
+                    type="text"
+                    id="image_url"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="type">Type:</label>
+                  <input
+                    type="text"
+                    id="type"
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                    required
+                  />
+                </div>
+
+                {/* Ingredients fields */}
+                <div>
+                  <label>Ingredients:</label>
+                  {ingredients.map((ingredient, index) => (
+                    <div key={index}>
+                      <input
+                        type="text"
+                        placeholder="Ingredient name"
+                        value={ingredient.name}
+                        onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
+                        required
+                      />
+                      <input
+                        type="text"
+                        placeholder="Quantity"
+                        value={ingredient.quality}
+                        onChange={(e) => handleIngredientChange(index, 'quality', e.target.value)}
+                        required
+                      />
+                    </div>
+                  ))}
+                  {/* <button type="button" onClick={addIngredientField}>Add Another Ingredient</button> */}
+                </div>
+
+                <button type="submit">Submit Recipe</button>
+              </form>
+            </div>
+          )}
           <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (

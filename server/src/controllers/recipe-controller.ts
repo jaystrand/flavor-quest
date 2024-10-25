@@ -32,14 +32,18 @@ export const getRecipeById = async (req: Request, res: Response): Promise<Respon
   // Create a new recipe
 export const createRecipe = async (req: Request, res: Response): Promise<Response> => {
     const { user_id, title, description, image_url, type, ingredients} = req.body;
+    const userId = parseInt(req.body.user_id, 10);
+    console.log("User ID -> backend",user_id);
+    console.log("Incoming recipe data: - backend ", req.body);
     try {
       const newRecipe = await Recipe.create({
-        user_id,
+        user_id : userId,
         title,
         description,
         image_url,
         type,
       });
+      console.log("New REcipe Backend -> ",newRecipe);
   // Add ingredients to the recipe and store them in an array to return
     const createdIngredients = [];
     // Add ingredients to the recipe
@@ -49,14 +53,16 @@ export const createRecipe = async (req: Request, res: Response): Promise<Respons
         recipe_id: newRecipe.recipe_id, // Link the ingredient to the recipe
         name: ingredient.name,
         quality: ingredient.quality,
-        unit: ingredient.unit,
+        unit: ingredient.unit||'unit',
       });
+      console.log("Created Ingredients Backend -> ",createdIngredients);
       createdIngredients.push(newIngredient); // Store created ingredient
     }
   }
       return res.status(201).json({
         message: 'Recipe created successfully',
         recipe: newRecipe,
+        ingredients: createdIngredients, //included ingriedients in the respons
       });
     } catch (error: any) {
       return res.status(500).json({ message: error.message });
