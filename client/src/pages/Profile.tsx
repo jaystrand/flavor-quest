@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../styles/buttonStyles.css';
+import '../styles/recipes.css';
 
 interface Favorite {
   recipe: {
@@ -159,6 +161,7 @@ const navigate = useNavigate();
     navigate('/');
   };
 
+
   return (
     <div>
       <h1>User Profile</h1>
@@ -197,7 +200,7 @@ const navigate = useNavigate();
           </ul>
 
               {/* Button to show/hide recipe creation form */}
-          <button onClick={handleCreateRecipe}>
+          <button className='button' onClick={handleCreateRecipe}>
             {showRecipeForm ? 'Cancel' : 'Create Recipe'}
           </button>
 
@@ -270,24 +273,25 @@ const navigate = useNavigate();
                   {/* <button type="button" onClick={addIngredientField}>Add Another Ingredient</button> */}
                 </div>
 
-                <button type="submit">Submit Recipe</button>
+                <button className='button' type="submit">Submit Recipe</button>
               </form>
             </div>
           )}
-          <button onClick={handleLogout}>Logout</button>
+          <button className='button' onClick={handleLogout}>Logout</button>
             {/* newly added to view recipes */}
-            <button onClick={handleViewRecipes}> 
+            <button className='button' onClick={handleViewRecipes}> 
               {showRecipes ? 'Hide Recipes' : 'View Recipes'}
             </button>
             {showRecipes && (
-        <div style={{ width: '30%', marginLeft: '20px' }}>
-          <h2>My Recipes</h2>
+        <div className="view-recipes-container">
+          <h2 className='header' >My Recipes</h2>
           <ul>
             {recipes.length > 0 ? (
               recipes.map((recipe, index) => (
-                <li key={index}>
-                  <h3>{recipe.title}</h3>
-                  <p>{recipe.description}</p>
+                <li key={index} >
+                  <h3 className="recipe-title">Recipe {index+1}</h3>
+                  <h3  className="recipe-title" >Title : {recipe.title}</h3>
+                  <p className="recipe-description" >Description : {recipe.description}</p>
                 </li>
               ))
             ) : (
