@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-interface UserProfile {
-  username: string;
-  email: string;
-}
+
 interface Favorite {
   recipe: {
     title: string;
