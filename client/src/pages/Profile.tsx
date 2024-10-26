@@ -5,14 +5,14 @@ import '../styles/buttonStyles.css';
 import '../styles/recipes.css';
 
 interface Favorite {
-  recipe: {
+  Recipe: {
     title: string;
     description: string;
   };
 }
 interface Comment {
   text: string;
-  recipe: {
+  Recipe: {
     title: string;
   };
 }
@@ -24,7 +24,7 @@ interface Recipe {
 
 const Profile = () => {
   // const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [user, setUser] = useState<{ username: string, email: string, favorites: Favorite[], comments: Comment[] } | null>(null);
+  const [user, setUser] = useState<{ username: string, email: string, Favorites: Favorite[], Comments: Comment[] } | null>(null);
  // States for recipe creation form
  const [showRecipeForm, setShowRecipeForm] = useState(false);
  const [title, setTitle] = useState('');
@@ -51,7 +51,7 @@ const navigate = useNavigate();
           return;
         }else{
           try {
-          const response = await axios.get('http://localhost:3001/api/users/profile', {
+          const response = await axios.get('/api/users/profile', {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (response.data) {
@@ -91,7 +91,7 @@ const navigate = useNavigate();
      const useID = localStorage.getItem('userId')
      console.log("UserId in profile",useID)
       try {
-        const response = await axios.post('http://localhost:3001/api/recipes', {
+        const response = await axios.post('/api/recipes', {
           title,
           description,
           image_url: imageUrl, // Include optional image URL
@@ -133,8 +133,9 @@ const navigate = useNavigate();
       return;
     }
     const useID = localStorage.getItem('userId')
+    console.log("User Id i  profile Fetch User Recipes",useID)
     try {
-      const response = await axios.get(`http://localhost:3001/api/recipes/user/${useID}`, {
+      const response = await axios.get(`/api/recipes/user/${useID}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.data) {
@@ -158,6 +159,7 @@ const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('userId');
     navigate('/');
   };
 
@@ -173,11 +175,11 @@ const navigate = useNavigate();
 
           <h2>Favorites</h2>
           <ul>
-            {user.favorites && user.favorites.length > 0 ? (
-              user.favorites.map((favorite, index) => (
+            {user.Favorites && user.Favorites.length > 0 ? (
+              user.Favorites.map((favorite, index) => (
                 <li key={index}>
-                  <h3>{favorite.recipe.title}</h3>
-                  <p>{favorite.recipe.description}</p>
+                  <h3>{favorite.Recipe?.title}</h3>
+                  <p>{favorite.Recipe?.description}</p>
                 </li>
               ))
             ) : (
@@ -187,11 +189,11 @@ const navigate = useNavigate();
 
           <h2>Comments</h2>
           <ul>
-            {user.comments && user.comments.length > 0 ? (
-              user.comments.map((comment, index) => (
+            {user.Comments && user.Comments.length > 0 ? (
+              user.Comments.map((comment, index) => (
                 <li key={index}>
                   <p>{comment.text}</p>
-                  <small>Commented on: {comment.recipe.title}</small>
+                  <small>Commented on: {comment.Recipe?.title}</small>
                 </li>
               ))
             ) : (

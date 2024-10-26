@@ -12,7 +12,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', {
+      const response = await axios.post('/auth/login', {
         email,
         password,
       });
@@ -30,6 +30,8 @@ const Login = () => {
        console.log("@LOGIN --> user from backend",user)
        setError(''); // Clear any previous errors
        alert('Login successful!');
+       const userID =localStorage.setItem('userId',JSON.stringify(user.user_id))
+       console.log("USERID LOGIN ",userID)
       //  setError(''); // Clear any previous errors
       // Redirect to profile page after login
       navigate('/profile');
