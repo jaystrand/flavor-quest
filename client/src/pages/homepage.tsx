@@ -1,7 +1,8 @@
-import {fetchImg} from '../api/API';
+import { fetchImg } from '../api/API';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from '../components/Login';
+
 // import './homepage.css';
 const homepage = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -9,6 +10,7 @@ const homepage = () => {
   useEffect(() => {
     const getImage = async () => {
       const imgData = await fetchImg();
+      console.log(imgData);
       if (imgData) {
         setImageUrl(imgData.urls?.regular);
       }
