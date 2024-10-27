@@ -92,7 +92,7 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
   }
   a:hover {
     color: #747bff;
@@ -188,4 +188,100 @@ nav a:hover {
 .home-page, .search-recipes-page, .about-us-page {
   flex: 1; /* Allow the pages to grow and shrink equally */
   margin: 10px; /* Add some margin around each page */
+}
+
+/* Mobile Styles (up to 600px wide) */
+@media (max-width: 600px) {
+  :root {
+    --primary-color: #1c1c1c; 
+    --background-color: #ffffff;
+  }
+
+  body, main {
+    padding: 10px;
+    font-size: 0.9em;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    line-height: 1.2;
+  }
+
+  button {
+    padding: 0.5em 1em;
+    font-size: 0.9em;
+  }
+
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .nav-link {
+    font-size: 0.9em;
+  }
+
+  .table {
+    width: 100%;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-page, .search-recipes-page, .about-us-page {
+    margin: 5px;
+  }
+}
+
+/* Tablet Styles (601px to 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  h1 {
+    font-size: 2.2em;
+  }
+
+  button {
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .table {
+    width: 90%;
+  }
+
+  nav {
+    flex-direction: row;
+  }
+
+  .home-page, .search-recipes-page, .about-us-page {
+    margin: 8px;
+  }
+}
+
+/* Desktop Styles (over 900px) */
+@media (min-width: 901px) {
+  body {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  .container {
+    width: 80vw;
+  }
+
+  .table {
+    width: 80%;
+  }
+
+  nav a {
+    font-size: 1.1em;
+  }
 }
