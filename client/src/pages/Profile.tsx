@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/buttonStyles.css';
 import '../styles/recipes.css';
-
+import '../styles/createRecipesForm.css'; 
 interface Favorite {
   Recipe: {
     title: string;
@@ -208,43 +208,47 @@ const navigate = useNavigate();
 
           {/* Recipe creation form */}
           {showRecipeForm && (
-            <div>
-              <h2>Create a New Recipe</h2>
+            <div className="recipe-form-container">
+              <h2 className="recipe-form-title">Create a New Recipe</h2>
               {showMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
               <form onSubmit={handleSubmitRecipe}>
                 <div>
-                  <label htmlFor="title">Title:</label>
+                  <label className="recipe-form-label"  htmlFor="title">Title:</label>
                   <input
                     type="text"
                     id="title"
+                    className="recipe-form-input"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="description">Description:</label>
+                  <label className="recipe-form-label" htmlFor="description">Description:</label>
                   <textarea
                     id="description"
+                    className="recipe-form-textarea"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                   />
                 </div>
                 <div>
-                  <label htmlFor="image_url">Image URL:</label>
+                  <label className="recipe-form-label" htmlFor="image_url">Image URL:</label>
                   <input
                     type="text"
                     id="image_url"
+                    className="recipe-form-input"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                   />
                 </div>
                 <div>
-                  <label htmlFor="type">Type:</label>
+                  <label className="recipe-form-label" htmlFor="type">Type:</label>
                   <input
                     type="text"
                     id="type"
+                  className="recipe-form-input"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                     required
@@ -253,12 +257,13 @@ const navigate = useNavigate();
 
                 {/* Ingredients fields */}
                 <div>
-                  <label>Ingredients:</label>
+                  <label className="recipe-form-label" >Ingredients:</label>
                   {ingredients.map((ingredient, index) => (
                     <div key={index}>
                       <input
                         type="text"
                         placeholder="Ingredient name"
+                        className="recipe-form-input"
                         value={ingredient.name}
                         onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
                         required
@@ -266,6 +271,7 @@ const navigate = useNavigate();
                       <input
                         type="text"
                         placeholder="Quantity"
+                        className="recipe-form-input"
                         value={ingredient.quality}
                         onChange={(e) => handleIngredientChange(index, 'quality', e.target.value)}
                         required
@@ -275,7 +281,7 @@ const navigate = useNavigate();
                   {/* <button type="button" onClick={addIngredientField}>Add Another Ingredient</button> */}
                 </div>
 
-                <button className='button' type="submit">Submit Recipe</button>
+                <button className="recipe-form-button" type="submit">Submit Recipe</button>
               </form>
             </div>
           )}
@@ -285,12 +291,11 @@ const navigate = useNavigate();
               {showRecipes ? 'Hide Recipes' : 'View Recipes'}
             </button>
             {showRecipes && (
-        <div className="view-recipes-container">
-          <h2 className='header' >My Recipes</h2>
-          <ul>
+        <div>
+          <ul className="recipe-card " >
             {recipes.length > 0 ? (
               recipes.map((recipe, index) => (
-                <li key={index} >
+                <li  key={index}>
                   <h3 className="recipe-title">Recipe {index+1}</h3>
                   <h3  className="recipe-title" >Title : {recipe.title}</h3>
                   <p className="recipe-description" >Description : {recipe.description}</p>
