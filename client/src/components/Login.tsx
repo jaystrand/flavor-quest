@@ -27,6 +27,7 @@ const Login = () => {
 
        // Store user information if returned by backend (optional)
        const user = response.data.user;
+       console.log("userid before json.stringify",user.user_id)
        localStorage.setItem('user', JSON.stringify(user)); // store user info
        console.log("@LOGIN --> user from backend",user)
        setError(''); // Clear any previous errors
