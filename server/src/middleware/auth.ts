@@ -13,7 +13,7 @@ interface JwtPayload {
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
 
  // Get the authorization header from the request
- const authHeader = req.headers.authorization;
+ const authHeader = req.header('Authorization');//.authorization;
   // Check if the authorization header is present
  if(authHeader){
    // Extract the token from the authorization header

@@ -27,7 +27,7 @@ userRouter.post('/',registerUser);
 userRouter.put('/:user_id',updateUser);
 
 // Route for getting the user's profile (requires authentication - but will add later)
-userRouter.get('/profile', getProfile);
+// userRouter.get('/profile', getProfile);
 
 //Route to delete a user by id - may be considered later
 //userRouter.delete('/:user_id', deleteUser);
