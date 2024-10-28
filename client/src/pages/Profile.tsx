@@ -44,6 +44,9 @@ const navigate = useNavigate();
     const fetchProfile = async () => {
       
         const token = localStorage.getItem('token'); // Get token from localStorage
+        const BASE_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://flavor-quest.onrender.com'
+  : '';
         console.log("TOKEN FROM PROFILE PAGE",token);
         if (!token) {
           navigate('/');  // Redirect to login if not authenticated
@@ -51,7 +54,7 @@ const navigate = useNavigate();
           return;
         }else{
           try {
-          const response = await axios.get('/api/users/profile', {
+          const response = await axios.get(`${BASE_URL}/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (response.data) {
