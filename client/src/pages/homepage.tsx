@@ -2,8 +2,6 @@ import { fetchImg } from '../api/API';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Login from '../components/Login';
-
-// import './homepage.css';
 const homepage = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const navigate = useNavigate(); //  hook to navigate b/w pages
@@ -37,7 +35,7 @@ const homepage = () => {
       <div style={{ width: '300px', padding: '20px', border: '1px solid #ccc', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         <Login />
         <br />
-        <button onClick={handleRegister}>Register</button> {/* Add Register Button */}
+        <button onClick={handleRegister}>Sign Up</button><label> Sign Up if not a member</label> {/* Add Register Button */}
       </div>
       </div>
     </div>

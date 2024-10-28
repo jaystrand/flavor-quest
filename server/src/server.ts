@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 // Allow CORS for all requests (from localhost:5173)
 app.use(cors({
-  origin: 'http://localhost:5173', // Specify your frontend URL here
+  origin: ['https://flavor-quest.onrender.com'], // Specify your frontend URL here ,'http://localhost:3000'
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true, // If you want to allow cookies and credentials
 }));

@@ -29,9 +29,9 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     req.user = user as JwtPayload;
     console.log('Decoded JWT payload:', user);
 
-    req.user = user as { user_id: number; username: string };
+    // req.user = user as { user_id: number; username: string };
 
-    console.log("auth -> ",user)
+    // console.log("auth -> ",user)
      
     return next();
   });

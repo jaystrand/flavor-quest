@@ -1,6 +1,6 @@
 import {Request, Response } from 'express';
 import {Recipe} from '../models/recipes.js';
-
+import { Ingredient } from '../models/index.js';
 
 // Get all recipes
 export const getAllRecipes = async (_req: Request, res: Response): Promise<Response> => {
@@ -29,20 +29,62 @@ export const getRecipeById = async (req: Request, res: Response): Promise<Respon
     }
   };
 
+  //getREcipesby userid
+  export const getRecipesByUserId = async (req : Request, res:Response) => {
+    const { user_id } = req.params; // Extract user_id from route parameter
+  
+    try {
+      // Find all recipes by the specific user
+      const recipes = await Recipe.findAll({
+        where: { user_id },
+      });
+  
+      // Check if any recipes were found
+      if (recipes.length > 0) {
+        res.status(200).json(recipes);
+      } else {
+        res.status(404).json({ message: 'No recipes found for this user' });
+      }
+    } catch (error) {
+      console.error("Error fetching user's recipes:", error);
+      res.status(500).json({ message: 'Error fetching recipes', error });
+    }
+  };
+
   // Create a new recipe
 export const createRecipe = async (req: Request, res: Response): Promise<Response> => {
-    const { user_id, title, description, image_url, type } = req.body;
+    const { user_id, title, description, image_url, type, ingredients} = req.body;
+    const userId = parseInt(req.body.user_id, 10);
+    console.log("User ID -> backend",user_id);
+    console.log("Incoming recipe data: - backend ", req.body);
     try {
       const newRecipe = await Recipe.create({
-        user_id,
+        user_id : userId,
         title,
         description,
         image_url,
         type,
       });
+      console.log("New REcipe Backend -> ",newRecipe);
+  // Add ingredients to the recipe and store them in an array to return
+    const createdIngredients = [];
+    // Add ingredients to the recipe
+  if (ingredients && ingredients.length > 0) {
+    for (const ingredient of ingredients) {
+      const newIngredient = await Ingredient.create({
+        recipe_id: newRecipe.recipe_id, // Link the ingredient to the recipe
+        name: ingredient.name,
+        quality: ingredient.quality,
+        unit: ingredient.unit||'unit',
+      });
+      console.log("Created Ingredients Backend -> ",createdIngredients);
+      createdIngredients.push(newIngredient); // Store created ingredient
+    }
+  }
       return res.status(201).json({
         message: 'Recipe created successfully',
         recipe: newRecipe,
+        ingredients: createdIngredients, //included ingriedients in the respons
       });
     } catch (error: any) {
       return res.status(500).json({ message: error.message });

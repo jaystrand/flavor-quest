@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../styles/registration.css'
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const Register = () => {
   const handleRegister = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/auth/register', {
+      const response = await axios.post('/auth/register', {
         email,
         username,
         password,
@@ -32,9 +33,9 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="register-container">
       <h2>Register</h2>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister}  className="register-form">
         <div>
           <label htmlFor="email">Email:</label>
           <input
@@ -66,8 +67,8 @@ const Register = () => {
           />
         </div>
         <button type="submit">Register</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
+        {error && <p  className="error-message" style={{ color: 'red' }}>{error}</p>}
+        {success && <p className="success-message" style={{ color: 'green' }}>{success}</p>}
       </form>
     </div>
   );

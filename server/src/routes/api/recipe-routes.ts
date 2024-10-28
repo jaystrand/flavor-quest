@@ -4,6 +4,7 @@ import {
   getRecipeById,
   createRecipe,
   updateRecipe,
+  getRecipesByUserId,
 //   deleteRecipe, //may add it later
 } from '../../controllers/recipe-controller.js';
 import { addIngredient, getIngredientsForRecipe } from '../../controllers/ingredients-controller.js';
@@ -26,6 +27,9 @@ recipeRouter.post('/:recipe_id/ingredients', addIngredient);
 
 // Get all ingredients for a specific recipe
 recipeRouter.get('/:recipe_id/ingredients', getIngredientsForRecipe);
+
+// Route to get recipes by a specific user
+recipeRouter.get('/user/:user_id', getRecipesByUserId); // New route
 // Route to delete a recipe by ID
 // recipeRouter.delete('/:recipe_id', deleteRecipe); // may add it later not decided yet
 

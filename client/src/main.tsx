@@ -18,11 +18,11 @@ if (rootElement) {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-        <Route path="/register" element={<Register />} />
-        <Route path="/search-recipes" element={<SearchRecipes />} />
-          <Route index element={<Home />} />
-          <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-          <Route path="about-us" element={<AboutUs />} />
+         <Route index element={<Home />} /> 
+         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+         <Route path="/register" element={<Register />} />
+         <Route path="/search-recipes" element={<SearchRecipes />} />
+         <Route path="/about-us" element={<AboutUs />} />
         </Route>
       </Routes>
     </BrowserRouter>
