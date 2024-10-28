@@ -54,7 +54,7 @@ const navigate = useNavigate();
           return;
         }else{
           try {
-          const response = await axios.get(`${BASE_URL}/api/users/profile`, {
+          const response = await axios.get(`https://flavor-quest.onrender.com/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (response.data) {
