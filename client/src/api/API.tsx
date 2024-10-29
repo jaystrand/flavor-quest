@@ -1,80 +1,58 @@
-import axios from 'axios';
-// import dotenv from 'dotenv';
-
-// dotenv.config();
-
-// const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
-// const imgApiKey = process.env.REACT_APP_UNSPLASH_API_KEY;
-
-const apiKey = 'e505245deca64cb38494658cc624bec5';
-const imgApiKey = 't7HfNWxFA-sV6n2WAAQFBEKzNHmNHg0oCCOVY-siuBw';
-
-
 const fetchRecipes = async (ingredients: string) => {
   try {
-    // API request to fetch recipes by ingredients
-    const response = await axios.get(
-      'https://api.spoonacular.com/recipes/findByIngredients',
-      {
-        params: {
-          ingredients,
-          number: 25,
-          instructionsRequired: true,
-          ignorePantry: true,
-          apiKey: apiKey,
-        },
-      }
-    );
-    // return recipe data
-    // console.log(response.data);
-    return response.data;
-  } catch (error) {
-    // log error to console
-    console.error(error);
+    console.log(ingredients);
+    const response = await fetch("/api/external-recipes/external-recipes", {
+      method: "POST",
+      body: JSON.stringify({ ingredients }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }); // API request to fetch recipes by ingredients
+    console.log('response1', response);
+    const recipeData = await response.json(); // Extract recipe data
+    // Process the recipe data as needed
+    console.log("Recipe data:", recipeData); // Log the entire recipe data object
+    return recipeData;
+  } catch (error: any) {
+    console.error("Error fetching recipes:", error);
   }
 };
-
 
 // uncomment this function if we include a way to fetch recipe by ID
 
 const fetchRecipeById = async (recipeId: string) => {
   try {
-    // API request to fetch recipe by recipe ID
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/${recipeId}/information`,
+    const response = await fetch(
+      "/api/external-recipes-id/external-recipes-id/",
       {
-        params: {
-          includeNutrition: false,
-          apiKey: apiKey,
+        method: "POST",
+        body: JSON.stringify({ recipeId }),
+        headers: {
+          "Content-Type": "application/json",
         },
       }
-    );
-    // return recipe data
-    // console.log(response.data);
-    return response.data;
-  } catch (error) {    
-    // log error to console
-    console.error(error);
+    ); // API request to fetch recipe by recipe ID
+    console.log('response2', response);
+    const recipeID = await response.json();
+    // Process the recipe data as needed
+    console.log('recipeid', recipeID);
+    return recipeID;
+  } catch (error: any) {
+    console.error("Error fetching recipe by ID:", error);
   }
 };
 
-const fetchImg = async () => {
+const fetchImg = async (): Promise<any> => {
   try {
-    const response = await axios.get('https://api.unsplash.com/photos/random', {
-      params: {
-        query: 'food'
-      },
-      headers: {
-        Authorization: `Client-ID ${imgApiKey}`,
-      },
-    });
-    // return image data
-    // console.log(response.data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return null; // return null if error in handling
+    const response = await fetch("/api/external-image/external-image"); // API request to fetch image
+
+    const imageData = await response.json(); // Extract image data
+    // Process the image data as needed
+    return imageData;
+  } catch (error: any) {
+    console.error("Error fetching image:", error);
+    return console.log(error); // Return null in case of an error
   }
 };
 
-export { fetchRecipes , fetchRecipeById , fetchImg };
+export { fetchRecipes, fetchRecipeById, fetchImg };
