@@ -67,27 +67,19 @@ const getExternalRecipeById = async (req: Request, res: Response) => {
       }
     };
 
-const getExternalImage = async () => {
+const getExternalImage = async (_req: any, res: any) => {
     const imgApiKey = process.env.REACT_APP_UNSPLASH_API_KEY;
-
     try {
         if (!imgApiKey) {
             throw new Error('Unsplash API key is not defined');
         }
-        const response = await axios.get('https://api.unsplash.com/photos/random', {
-          params: {
-            query: 'food'
-          },
-          headers: {
-            Authorization: `Client-ID ${imgApiKey}`,
-          },
-        });
+        const response = await axios.get('https://api.unsplash.com/photos/random?query=food&client_id=' + imgApiKey);
+        console.log(response.data);
         // return image data
-        // console.log(response.data);
-        return response.data;
+        return res.json(response.data);
       } catch (error) {
         console.error(error);
-        return null; // return null if error in handling
+        return res.json(error); // return null if error in handling
       }
     };
 

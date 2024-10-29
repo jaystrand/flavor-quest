@@ -7,6 +7,6 @@ const externalRecipeRouter = express.Router();
 // Route to get all recipes
 externalRecipeRouter.post('/external-recipes', getExternalRecipes);
 externalRecipeRouter.post('/external-recipes-id', getExternalRecipeById);
-externalRecipeRouter.post('/external-image', getExternalImage);
+externalRecipeRouter.get('/external-image', getExternalImage);
 
 export default externalRecipeRouter;

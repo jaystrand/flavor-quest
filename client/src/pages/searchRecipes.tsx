@@ -51,7 +51,7 @@ const SearchRecipes: React.FC = () => {
   return (
     <div className="search-recipes">
       <h1>Search Recipes by Ingredients</h1>
-      {user && <h2>Welcome, {user.username}!</h2>}  {/* Display the logged-in username */}
+       {user && <h2>Welcome, {user.username}!</h2>} {/* Display the logged-in username */}
       <form onSubmit={handleSearch}>
         <input
           type="text"
