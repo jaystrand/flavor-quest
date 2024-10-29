@@ -5,6 +5,7 @@
 - ###[Usage](#usage)
 - ###[Features](#features)
 - ###[Installation](#installation)
+- ###[Screenshots](#screenshots)
 - ###[License](#license)
 - ###[Contributors](#contributors)
 - ###[Questions](#questions)
@@ -25,6 +26,11 @@ Using Flavor Quest is quick and easy! Just type in the ingredients you have avai
 #### Clone the Respository: In your CLI, type the following syntax: git clone git@github.com:jaystrand/flavor-quest.git
 #### Install the required dependencies: Use the following syntax: npm install
 #### Start the applications: Type the following syntax: npm run dev
+
+## Screenshots
+![alt text](<Flavor Quest Homepage.png>)
+![alt text](<Flavor Quest Search Page.png>)
+![alt text](<Flavor Quest About Page.png>)
 
 
 ## Contributors
