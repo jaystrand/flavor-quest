@@ -19,8 +19,9 @@ const getExternalRecipes = async (req: Request<{},{},ReqExternalRecipesDTO>, res
 
         
     const response = await axios.get(
-        `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients.ingredients}&number=25&instructionsRequired=true&ignorePantry=true&apiKey=${api_key}`,
+        `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients.ingredients}&number=10&instructionsRequired=true&ignorePantry=true&apiKey=${api_key}`,
       );
+      console.log(response.data);
       // return recipe data
       return res.json(response.data);
     } catch (error: any) {
@@ -45,7 +46,7 @@ const getExternalRecipeById = async (req: Request, res: Response) => {
           `https://api.spoonacular.com/recipes/${recipeId.recipeId}/information?includeNutrition=false&apiKey=${api_key}`
         );
         // return recipe data
-        // console.log(response.data);
+        console.log(response.data);
         return res.json(response.data);
       } catch (error: any) {    
         // log error to console

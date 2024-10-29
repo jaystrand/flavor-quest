@@ -1,19 +1,17 @@
 import { fetchRecipes, fetchRecipeById } from "../api/API";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 const SearchRecipes: React.FC = () => {
   const [ingredients, setIngredients] = useState("");
   const [recipes, setRecipes] = useState<any[]>([]); // State to store recipes
   const [error, setError] = useState<string | null>(null);
-  const [recipeInstructions, setRecipeInstructions] = useState<{
-    [key: string]: string[];
-  }>({}); // State to store recipe instructions by ID
+  const [recipeInstructions, setRecipeInstructions] = useState<{ [key: string]: any[] }>({}); // State to store recipe instructions by ID
   const [user, setUser] = useState<{ username: string } | null>(null);
 
   // Retrieve user information from local storage
   useEffect(() => {
     try {
-      const storedUser = localStorage.getItem("user");
+      const storedUser = localStorage.getItem('user');
       if (storedUser) {
         setUser(JSON.parse(storedUser)); // Only parse if the user is stored
       } else {
@@ -36,20 +34,17 @@ const SearchRecipes: React.FC = () => {
       const recipeResults = await fetchRecipes(ingredients); // Calling the fetchRecipes function
       setRecipes(recipeResults); // Setting the fetched recipes in state
 
-      const recipeIds = recipeResults.map(
-        (recipe: { id: string }) => recipe.id
-      ); // Extracting recipe IDs
+      const recipeIds = recipeResults.map((recipe: { id: string }) => recipe.id); // Extracting recipe IDs
 
       if (recipeIds.length > 0) {
-        const instructionsMap: { [key: string]: string[] } = {};
+        const instructionsMap: { [key: string]: any[] } = {};
         await Promise.all(
-          recipeIds.map(async (recipeId: string) => {
-            const recipeById = await fetchRecipeById(recipeId);
-            instructionsMap[recipeId] = recipeById.instructions;
+          recipeIds.map(async (id: string) => {
+            const recipeById = await fetchRecipeById(id); // Fetching each recipe by ID
+            instructionsMap[id] = recipeById.analyzedInstructions; // Storing analyzedInstructions by recipe ID
           })
         );
         setRecipeInstructions(instructionsMap);
-        console.log(recipeInstructions);
       } else {
         setError("No recipes found.");
       }
@@ -61,8 +56,7 @@ const SearchRecipes: React.FC = () => {
   return (
     <div className="search-recipes">
       <h1>Search Recipes by Ingredients</h1>
-      {user && <h2>Welcome, {user.username}!</h2>}{" "}
-      {/* Display the logged-in username */}
+      {user && <h2>Welcome, {user.username}!</h2>} {/* Display the logged-in username */}
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -72,7 +66,9 @@ const SearchRecipes: React.FC = () => {
         />
         <button type="submit">Search</button>
       </form>
+
       {error && <p>{error}</p>}
+
       <div className="recipe-results">
         {recipes.length > 0 ? (
           <ul>
@@ -96,14 +92,14 @@ const SearchRecipes: React.FC = () => {
                 </ul>
                 <p>Instructions:</p>
                 <ol>
-                {recipeInstructions[recipe.id]?.map((instruction: any, index: number) => (
-                  <li key={index}>
-                    {instruction.steps.map((step: any, stepIndex: number) => (
-                      <p key={stepIndex}>{step.step}</p>
-                    ))}
-                  </li>
-                ))}
-              </ol>
+                  {recipeInstructions[recipe.id] && recipeInstructions[recipe.id].length > 0 ? (
+                    recipeInstructions[recipe.id][0]?.steps?.map((step: { step: string }, stepIndex: number) => (
+                      <li key={stepIndex}>{step.step}</li>
+                    ))
+                  ) : (
+                    <p>No instructions found.</p>
+                  )}
+                </ol>
               </li>
             ))}
           </ul>
@@ -116,7 +112,3 @@ const SearchRecipes: React.FC = () => {
 };
 
 export default SearchRecipes;
-
-// function forEach(recipeIds: any) {
-//   throw new Error("Function not implemented.");
-// }

@@ -8,9 +8,10 @@ const fetchRecipes = async (ingredients: string) => {
         "Content-Type": "application/json",
       },
     }); // API request to fetch recipes by ingredients
+    console.log('response1', response);
     const recipeData = await response.json(); // Extract recipe data
     // Process the recipe data as needed
-    console.log(recipeData);
+    console.log("Recipe data:", recipeData); // Log the entire recipe data object
     return recipeData;
   } catch (error: any) {
     console.error("Error fetching recipes:", error);
@@ -31,10 +32,10 @@ const fetchRecipeById = async (recipeId: string) => {
         },
       }
     ); // API request to fetch recipe by recipe ID
-
+    console.log('response2', response);
     const recipeID = await response.json();
     // Process the recipe data as needed
-    console.log(recipeID);
+    console.log('recipeid', recipeID);
     return recipeID;
   } catch (error: any) {
     console.error("Error fetching recipe by ID:", error);
