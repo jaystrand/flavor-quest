@@ -1,0 +1,44 @@
+.homepage-container {
+    text-align: center;
+    padding: 20px;
+    color: var(--purple-accent);
+  }
+  
+  .homepage-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    margin-top: 20px;
+  }
+  
+  .homepage-image {
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .login-signup-box {
+    width: 300px;
+    padding: 20px;
+    color: aliceblue;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Media Query for Mobile */
+  @media (max-width: 768px) {
+    .homepage-content {
+      flex-direction: column;
+    }
+  
+    .homepage-image {
+      max-width: 100%;
+    }
+  
+    .login-signup-box {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }

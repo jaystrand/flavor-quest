@@ -285,3 +285,115 @@ nav a:hover {
     font-size: 1.1em;
   }
 }
+
+/* Container styling for search page */
+.search-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Welcome header styling */
+.search-recipes h1, .search-recipes h2 {
+  color: var(--purple-accent);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Input styling */
+.search-recipes input[type="text"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--nav-border-color);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Button styling */
+.search-recipes button {
+  padding: 0.8rem 1.2rem;
+  background-color: var(--purple-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium);
+  transition: background-color var(--transition-duration);
+}
+.search-recipes button:hover {
+  background-color: var(--primary-hover-color);
+}
+
+/* Error message */
+.search-recipes p {
+  color: var(--purple-accent);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Recipe results list */
+.recipe-results {
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.recipe-results ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Recipe card styling */
+.recipe-results li {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.recipe-results img {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+/* Recipe details styling */
+.recipe-title {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold);
+  margin: 0.5rem 0;
+}
+.recipe-description,
+.recipe-instructions {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* Responsive media queries */
+@media (max-width: 600px) {
+  .search-recipes {
+    padding: 1rem;
+  }
+  .recipe-results li {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .recipe-title {
+    font-size: 1.2rem;
+  }
+  .recipe-description,
+  .recipe-instructions {
+    font-size: 0.9rem;
+  }
+}
+
