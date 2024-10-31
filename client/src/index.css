@@ -397,3 +397,11 @@ nav a:hover {
   }
 }
 
+.page-background {
+    background-image: url('https://img.freepik.com/free-photo/delicious-black-pasta-copy-space_23-2148469855.jpg?t=st=1730343553~exp=1730347153~hmac=bbbe9b54d4b249af14d6bbcee5f41423df9dcef47ddaa26e2fe9e2710e14b661&w=1380');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    
+  }
