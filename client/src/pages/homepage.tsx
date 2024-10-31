@@ -19,8 +19,9 @@ const homepage = () => {
   const handleRegister = () => {
     navigate('/register'); // Navigate to the registration page
   };
+  // className="page-background"
   return (
-    <div className="homepage-container" >
+    <div className="homepage-container home-page-background" >
     
      
       <h1>Welcome to Flavor Quest</h1>

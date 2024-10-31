@@ -170,7 +170,7 @@ const navigate = useNavigate();
 
 
   return (
-    <div>
+    <div className='recipe-page-background'>
       <h1>User Profile</h1>
       <h2>Welcome {user?.username} !</h2>
       {user ? (
