@@ -1,5 +1,6 @@
 /* Registration Form Container */
 .register-container {
+  background-image: url('https://img.freepik.com/free-photo/doughnuts_23-2148018886.jpg?t=st=1730346021~exp=1730349621~hmac=d937f5e17b0058406e5c070ab5e57516709068cd0e0fae6e622d3c585ba563c1&w=1380');
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
@@ -75,3 +76,4 @@
   text-align: center;
   margin-top: 0.5rem;
 }
+
