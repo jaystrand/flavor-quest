@@ -49,3 +49,12 @@
 .header {
     color: #f6f1f1;
 }
+
+.recipe-page-background {
+    background-image: url('https://img.freepik.com/free-photo/bowls-with-rice-pasta-dark-background_23-2148340387.jpg?t=st=1730345269~exp=1730348869~hmac=ab34b19590ef41da81c7450aad5dce4d1bbac203fab071523a813ce9cc4a6968&w=1380');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+     /* filter: blur(8px); */
+  }
